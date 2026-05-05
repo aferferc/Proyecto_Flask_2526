@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<div class="w3-display-container w3-animate-opacity">
+  <a href="/items">
+    <img src="/static/img/cabecera.png" class="imagen-principal" alt="Concesionarios Toyota">
+  </a>
+</div>
+
+<div class="w3-container w3-padding-64 w3-center" id="pruebas">
+  <h2>MODELOS DISPONIBLES</h2>
+  <p>La gama Toyota en nuestra red de concesionarios:</p>
+  <div class="w3-row"><br>
+
+    <div class="w3-quarter">
+      <img src="/static/img/Corolla.png" class="w3-circle w3-hover-opacity imagenes-ini" alt="Toyota Corolla">
+      <h3>Corolla</h3>
+      <p>El compacto más vendido del mundo</p>
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/static/img/RAV4.png" class="w3-circle w3-hover-opacity imagenes-ini" alt="Toyota RAV4">
+      <h3>RAV4</h3>
+      <p>El SUV todoterreno familiar</p>
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/static/img/Prius.png" class="w3-circle w3-hover-opacity imagenes-ini" alt="Toyota Prius">
+      <h3>Prius</h3>
+      <p>Pionero de la movilidad híbrida</p>
+    </div>
+
+    <div class="w3-quarter">
+      <img src="/static/img/Land_Cruiser.png" class="w3-circle w3-hover-opacity imagenes-ini" alt="Toyota Land Cruiser">
+      <h3>Land Cruiser</h3>
+      <p>Leyenda del todoterreno</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="w3-row-padding w3-padding-64 w3-theme-l1" id="noticias">
+
+  <div class="w3-quarter">
+    <h2>Sobre la red</h2>
+    <p>Contamos con <strong>más de 300 concesionarios</strong> distribuidos por todo Estados Unidos.
+    Puedes buscar por nombre, filtrar por <mark>modelo disponible</mark> o por
+    <em>estado</em>, y ordenar los resultados como prefieras.
+    Accede al <strong>detalle de cada concesionario</strong> para ver su inventario completo,
+    dirección, teléfono y stock disponible por modelo.</p>
+  </div>
+
+  <div class="w3-quarter">
+    <div class="w3-card w3-white">
+      <img src="/static/img/Camry.png" class="imagenes-noticia" alt="Toyota Camry">
+      <div class="w3-container">
+        <h3>Camry</h3>
+        <h4>Sedán de referencia</h4>
+        <p>Confort, tecnología y fiabilidad en un solo vehículo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-quarter">
+    <div class="w3-card w3-white">
+      <img src="/static/img/Highlander.png" class="imagenes-noticia" alt="Toyota Highlander">
+      <div class="w3-container">
+        <h3>Highlander</h3>
+        <h4>SUV familiar de gran tamaño</h4>
+        <p>Espacio, versatilidad y tracción total.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-quarter">
+    <div class="w3-card w3-white">
+      <img src="/static/img/Yaris.png" class="imagenes-noticia" alt="Toyota Yaris">
+      <div class="w3-container">
+        <h3>Yaris</h3>
+        <h4>Urbano y eficiente</h4>
+        <p>El aliado perfecto para la ciudad con motor híbrido.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
