@@ -1,1 +1,65 @@
-Aun no hay nada por aqui, estoy en ello
+{% extends "base.html" %}
+
+{% block title %}Concesionarios{% endblock %}
+
+{% block content %}
+
+<div class="w3-container">
+
+  <h2 class="w3-center"><i class="w3-margin-right"></i>Buscar Concesionarios</h2>
+  <hr>
+
+  <div class="w3-card w3-white w3-padding w3-margin-bottom">
+    <form action="/items" method="get">
+
+      <div class="w3-row-padding">
+
+        <div class="w3-third">
+          <label><strong><i class="fa w3-margin-right"></i>Buscar por nombre / ciudad:</strong></label>
+          <input class="w3-input w3-border w3-margin-top" type="text" name="busqueda" placeholder="Ej: Toyota Marin, San Rafael..." value="{{ busqueda }}">
+        </div>
+
+        <div class="w3-third">
+          <label><strong><i class="fa w3-margin-right"></i>Filtrar por modelo:</strong></label>
+          <select class="w3-select w3-border w3-margin-top" name="modelo">
+            <option value="">Todos los modelos</option>
+            {% for m in modelos -%}
+              {% if modelo_sel == m %}
+                <option value="{{ m }}" selected>{{ m }}</option>
+              {% else %}
+                <option value="{{ m }}">{{ m }}</option>
+              {% endif %}
+            {%- endfor %}
+          </select>
+        </div>
+
+        <div class="w3-quarter">
+          <label><strong><i class="fa w3-margin-right"></i>Ordenar por nombre:</strong></label>
+          <select class="w3-select w3-border w3-margin-top" name="orden">
+            {% if orden == 'asc' %}
+              <option value="asc" selected>A -> Z (ascendente)</option>
+              <option value="desc">Z -> A (descendente)</option>
+            {% else %}
+              <option value="asc">A -> Z (ascendente)</option>
+              <option value="desc" selected>Z -> A (descendente)</option>
+            {% endif %}
+          </select>
+        </div>
+
+        <div class="w3-quarter">
+          <button type="submit" class="w3-button w3-teal w3-margin-top w3-block">
+            <i class="fa w3-margin-right"></i>Buscar
+          </button>
+        </div>
+
+        <div class="w3-quarter">
+          <a href="/items" class="w3-button w3-grey w3-margin-top w3-block">
+            <i class="fa w3-margin-right"></i>Limpiar filtros
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
