@@ -56,9 +56,52 @@
           <a href="/items" class="w3-button w3-grey w3-margin-top w3-block">
             <i class="fa w3-margin-right"></i>Limpiar filtros
           </a>
-        </div>
+        </div> 
       </div>
     </form>
+    
+    {% if resultados %}
+    <br>
+    <br>
+    <div class="w3-responsive">
+      <table class="w3-table-all w3-hoverable w3-card">
+        <thead>
+          <tr class="w3-theme">
+            <th>#</th>
+            <th><i class="fa w3-margin-right"></i>Nombre</th>
+            <th><i class="fa w3-margin-right"></i>Ciudad</th>
+            <th><i class="fa w3-margin-right"></i>Modelos</th>
+            <th><i class="fa w3-margin-right"></i>Stock total</th>
+            <th>Ver-Concesionario</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in resultados -%}
+            <tr {% if loop.first %}class="w3-pale-green"{% endif %}>
+              <td class="w3-text-grey">{{ loop.index }}</td>
+              <td>{{ c.name }}</td>
+              <td>{{ c.city }}</td>
+              <td>{{ c.num_modelos }}</td>
+              <td>{{ c.stock_total }}</td>
+              <td>
+                <a href="/item/{{ c.code }}" class="w3-button w3-small w3-theme w3-hover-teal">
+                  <i class="fa"></i>Ver Concesionario
+                </a>
+              </td>
+            </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  {% else %}
+
+    <div class="w3-panel w3-pale-red w3-card">
+      <p>No se encontraron concesionarios con los filtros aplicados. Prueba con otros valores.</p>
+    </div>
+    
+  {% endif %}
+    
   </div>
 </div>
 

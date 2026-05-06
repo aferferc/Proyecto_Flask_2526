@@ -25,5 +25,9 @@ def obtenerModelos(datos):
     return modelos
 
 
-
+def calcularStockTotal(inventario):
+    stock_total = 0
+    for modelo in inventario.values():
+        stock_total = stock_total + modelo['stock']
+    return stock_total
 

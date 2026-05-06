@@ -15,16 +15,39 @@ def items():
     modelo_sel = request.args.get('modelo', '')
     orden = request.args.get('orden', 'asc')
     modelos_disp = obtenerModelos(datos)
+    resultados = []
     
-    
-    print(busqueda, modelo_sel, orden)
-    
+    for c in datos:
+        nombre = c['name']
+        ciudad = c['city']
+        estado = c['state']
+        inventario = c['inventario']
+        
+        if busqueda.lower() not in nombre.lower() and busqueda.lower() not in ciudad.lower():
+            continue
+        
+        if modelo_sel and (modelo_sel not in inventario):
+            continue
+        
+        stock_total = calcularStockTotal(inventario)
+        
+        num_modelos = len(inventario)
+        
+        resultados.append({
+            'name': nombre,
+            'city': ciudad,
+            'stock_total': stock_total,
+            'num_modelos': num_modelos,
+        })
+        
+    resultados.sort(key=lambda x: x['name'], reverse=(orden == 'desc'))
     
     return render_template('items.html',
                            modelos = modelos_disp,
                            busqueda = busqueda,
                            modelo_sel = modelo_sel,
-                           modelos_disp = modelos_disp,
-                           orden = orden)
+                           orden = orden,
+                           resultados = resultados
+                           )
 
 app.run('0.0.0.0', 5000, debug=True)
