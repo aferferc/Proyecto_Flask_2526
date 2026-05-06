@@ -34,6 +34,7 @@ def items():
         num_modelos = len(inventario)
         
         resultados.append({
+            'code': c['code'],
             'name': nombre,
             'city': ciudad,
             'stock_total': stock_total,
@@ -49,5 +50,14 @@ def items():
                            orden = orden,
                            resultados = resultados
                            )
+
+@app.route('/item/<code>')
+def detalle(code):
+    concesionario = buscarConcesionario(datos, code)
+    
+    if concesionario is None:
+        abort(404)
+
+    return render_template('concesionarios.html', c=concesionario)
 
 app.run('0.0.0.0', 5000, debug=True)

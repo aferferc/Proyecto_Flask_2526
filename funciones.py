@@ -31,3 +31,9 @@ def calcularStockTotal(inventario):
         stock_total = stock_total + modelo['stock']
     return stock_total
 
+def buscarConcesionario(datos, code):
+    for c in datos:
+        if c.get('code') == code:
+            return c
+    return None
+
