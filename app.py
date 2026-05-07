@@ -57,7 +57,18 @@ def detalle(code):
     
     if concesionario is None:
         abort(404)
+        
+    modelos_detalle = []
+    
+    for modelo, info in concesionario.get('inventario', {}).items():
+        modelos_detalle.append({
+            'nombre': modelo,
+            'precio_base': info.get('precio_base', 0),
+            'colores': info.get('colores', []),
+            'motorizaciones': info.get('motorizaciones', []),
+            'extras': info.get('extras', []),
+            'stock': info.get('stock', 0),})
 
-    return render_template('concesionarios.html', c=concesionario)
+    return render_template('concesionarios.html', c = concesionario, modelos = modelos_detalle)
 
 app.run('0.0.0.0', 5000, debug=True)
