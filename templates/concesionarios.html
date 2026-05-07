@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ c.name }}{% endblock %}
+
+{% block content %}
+
+<div class="w3-container catalogo">
+
+  <div class="w3-card w3-white w3-padding w3-margin-bottom">
+    <div class="w3-row-padding">
+
+      <div class="w3-twothird">
+        <h2><i class="fa w3-margin-right w3-text-teal"></i>{{ c.name }}</h2>
+        <hr>
+        <p>
+          <i class="fa w3-margin-right w3-text-teal"></i>
+          <strong>Dirección:</strong>
+          {{ c.address1 }}{% if c.address2 %}, {{ c.address2 }}{% endif %},
+          {{ c.city }}, {{ c.state }} {{ c.zipCode }}
+        </p>
+        <p>
+          <i class="fa w3-margin-right w3-text-teal"></i>
+          <strong>Teléfono:</strong> {{ c.phone if c.phone else 'No disponible' }}
+        </p>
+        {% if c.url %}
+        <p>
+          <i class="fa w3-margin-right w3-text-teal"></i>
+          <strong>Web:</strong>
+          <a href="{{ c.url }}" target="_blank" rel="noopener">{{ c.url }}</a>
+        </p>
+        {% endif %}
+        <p>
+          <i class="fa w3-margin-right w3-text-teal"></i>
+          <strong>Coordenadas:</strong> {{ c.latitude }}, {{ c.longitude }}
+        </p>
+      </div>
+
+    </div>
+  </div>
+  
+  <h3><i class="fa w3-margin-right"></i>Inventario disponible</h3>
+
+  {% if modelos %}
+
+    <div class="w3-responsive">
+      <table class="w3-table-all w3-hoverable w3-card">
+        <thead>
+          <tr class="w3-theme">
+            <th>Modelo</th>
+            <th>Precio base</th>
+            <th>Motorizaciones</th>
+            <th>Colores</th>
+            <th>Extras</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in modelos -%}
+            <tr {% if loop.first %}class="w3-pale-green"{% endif %}>
+              <td>
+                <i class="fa w3-margin-right w3-text-teal"></i>{{ m.nombre }}
+              </td>
+              <td>
+                <span class="w3-tag">
+                  {{ m.precio_base }} $
+                </span>
+              </td>
+              <td>
+                {% for mot in m.motorizaciones -%}
+                  <span class="w3-tag w3-small w3-margin-right">{{ mot }}</span>
+                {%- endfor %}
+              </td>
+              <td>
+                {% for col in m.colores -%}
+                  <span class="w3-tag w3-small w3-margin-right">{{ col }}</span>
+                {%- endfor %}
+              </td>
+              <td>
+                <ul class="w3-ul w3-small">
+                  {% for extra in m.extras -%}
+                    <li>{{ extra }}</li>
+                  {%- endfor %}
+                </ul>
+              </td>
+              <td>
+                {% if m.stock > 0 %}
+                  <span class="w3-tag ">{{ m.stock }}</span>
+                {% else %}
+                  <span class="w3-tag w3-red">Agotado</span>
+                {% endif %}
+              </td>
+            </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  {% else %}
+    <div class="w3-panel w3-pale-red w3-card">
+      <p><i class="fa fa-exclamation-triangle w3-margin-right"></i>Este concesionario no tiene inventario registrado.</p>
+    </div>
+  {% endif %}
+
+  <div class="w3-margin-top w3-padding">
+    <a href="/items" class="w3-button w3-teal">
+      <i class="fa fa-arrow-left w3-margin-right"></i>Volver al listado
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}
